@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Assimil · Lección 1 · Las contracciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F4F1; --surface:#FFFFFF; --ink:#14202B; --muted:#5B6B78; --line:#D9DEE2;
+  --accent:#1F4FD8; --accent-soft:#E4EAFB; --pron:#A84B06; --es:#2B6A56;
+  --ok:#1E7A46; --ok-soft:#E1F3E8; --bad:#B3261E; --bad-soft:#FBE7E5; --star:#C98A00;
+  --serif:"Literata",Georgia,"Times New Roman",serif;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F161C; --surface:#17212A; --ink:#E8EEF2; --muted:#9BAAB6; --line:#26343F;
+    --accent:#86A8FF; --accent-soft:#1B2A4A; --pron:#F0A35C; --es:#76C7A9;
+    --ok:#6FD39B; --ok-soft:#173326; --bad:#FF8F86; --bad-soft:#3A1D1B; --star:#F2B632;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F161C; --surface:#17212A; --ink:#E8EEF2; --muted:#9BAAB6; --line:#26343F;
+  --accent:#86A8FF; --accent-soft:#1B2A4A; --pron:#F0A35C; --es:#76C7A9;
+  --ok:#6FD39B; --ok-soft:#173326; --bad:#FF8F86; --bad-soft:#3A1D1B; --star:#F2B632;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px 80px}
+
+/* cabecera */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0 10px;color:var(--muted);font-size:14px}
+.top .where{font-weight:600;color:var(--ink)}
+.nav{display:flex;gap:6px}
+.nav button{border:1px solid var(--line);background:var(--surface);border-radius:8px;width:36px;height:36px;display:grid;place-items:center;color:var(--ink)}
+.nav button[disabled]{opacity:.35;cursor:not-allowed}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;width:.7%;background:var(--accent);min-width:4px}
+.bar.done i{background:var(--ok)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(32px,7vw,46px);line-height:1.1;letter-spacing:-.01em;margin:28px 0 6px}
+.sub{color:var(--muted);margin:0 0 4px}
+.badge{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:var(--ok);background:var(--ok-soft);padding:3px 10px;border-radius:99px}
+.badge[hidden]{display:none}
+
+/* pestañas */
+.tabs{display:flex;gap:4px;margin:26px 0 0;border-bottom:1px solid var(--line)}
+.tab{background:none;border:0;padding:10px 14px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab small{font-weight:500;margin-left:4px;color:var(--muted)}
+
+/* controles */
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:12px 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.play-all{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:600}
+:root[data-theme="dark"] .play-all{color:#0B1220}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .play-all{color:#0B1220}}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;padding:8px 12px;font-size:14px;color:var(--muted)}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--ink);font-weight:600}
+.toggles{display:flex;gap:14px;font-size:14px;color:var(--muted)}
+.toggles label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.lab{font-size:13px;color:var(--muted)}
+
+/* diálogo */
+.rows{list-style:none;margin:0;padding:0}
+.row{display:grid;grid-template-columns:28px 1fr auto;gap:0 12px;padding:22px 8px 22px 0;border-bottom:1px solid var(--line);border-radius:0;transition:background .2s}
+.row.playing{background:var(--accent-soft);margin:0 -12px;padding-left:12px;padding-right:20px;border-radius:12px;border-bottom-color:transparent}
+.n{font-family:var(--serif);color:var(--muted);font-size:15px;padding-top:6px;text-align:right}
+.en{font-family:var(--serif);font-size:clamp(22px,4.6vw,27px);line-height:1.3;font-weight:500;margin:0}
+.pr{font-family:var(--serif);font-style:italic;color:var(--pron);margin:6px 0 0;font-size:17px}
+.es{color:var(--es);margin:6px 0 0;font-size:16px}
+.fn{font:600 12px var(--sans);border:1px solid var(--accent);color:var(--accent);background:none;border-radius:6px;padding:0 6px;margin-left:4px;vertical-align:middle;line-height:20px}
+.acts{display:flex;flex-direction:column;gap:6px}
+.ib{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.ib[aria-pressed="true"]{color:var(--star);border-color:var(--star)}
+.ib svg{width:18px;height:18px}
+.ib.rec{border-color:var(--bad);color:var(--bad);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px var(--bad-soft)}}
+@media (prefers-reduced-motion:reduce){.ib.rec{animation:none}}
+.fb{margin:12px 0 0;font-size:15px;border-left:3px solid var(--line);padding-left:12px}
+.fb.good{border-left-color:var(--ok)}
+.fb.mid{border-left-color:var(--star)}
+.fb.low{border-left-color:var(--bad)}
+.fb .verdict{font-weight:600;margin:0}
+.fb .w{font-family:var(--serif);font-size:19px;margin:4px 0 0;line-height:1.7}
+.fb .w span{padding:1px 4px;border-radius:4px;margin-right:2px}
+.fb .w .ok{background:var(--ok-soft);color:var(--ok)}
+.fb .w .no{background:var(--bad-soft);color:var(--bad);text-decoration:underline}
+.fb .heard{color:var(--muted);margin:4px 0 0}
+.fb .best{color:var(--muted);margin:4px 0 0;font-size:14px}
+.hide-pr .pr{display:none}
+.hide-es .es{display:none}
+.cover-en .row:not(.revealed) .en,.cover-en .row:not(.revealed) .pr,
+.cover-es .row:not(.revealed) .es{filter:blur(9px);user-select:none;cursor:pointer}
+.cover-en .row:not(.revealed) .fn{visibility:hidden}
+.hint{color:var(--muted);font-size:14px;margin:14px 0 0}
+
+/* contracciones */
+h2{font-family:var(--serif);font-size:24px;margin:44px 0 6px}
+.lead{color:var(--muted);margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th{font-weight:600;text-align:left;color:var(--muted);font-size:14px;padding:8px 8px 8px 0;border-bottom:1px solid var(--line)}
+td{padding:11px 8px 11px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+td.c{font-family:var(--serif);font-weight:600;font-size:19px}
+td.p{font-family:var(--serif);font-style:italic;color:var(--pron)}
+.tblwrap{overflow-x:auto}
+
+/* notas */
+.note{padding:18px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:34px 1fr;gap:10px}
+.note.hl{background:var(--accent-soft);margin:0 -12px;padding:18px 12px;border-radius:12px;border-bottom-color:transparent}
+.note b.k{font:600 13px var(--sans);color:var(--accent);border:1px solid var(--accent);border-radius:6px;height:22px;display:inline-grid;place-items:center;width:30px}
+.note p{margin:0;font-size:17px;max-width:62ch}
+.prelim{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:22px 0 4px}
+.prelim p{margin:0;max-width:62ch}
+.prelim p+p{margin-top:8px;color:var(--muted);font-size:15px}
+
+/* ejercicios */
+.ex-h{margin:34px 0 4px}
+.q{padding:16px 0;border-bottom:1px solid var(--line)}
+.q .ask{color:var(--es);margin:0 0 6px}
+.q .sol{display:none;font-family:var(--serif);font-size:20px;font-weight:500;margin:8px 0 0}
+.q.open .sol{display:block}
+.link{background:none;border:0;color:var(--accent);padding:4px 0;font-weight:600;font-size:15px}
+.fill{padding:16px 0;border-bottom:1px solid var(--line)}
+.fill .hint2{color:var(--es);margin:0 0 8px;font-size:15px}
+.ln{font-family:var(--serif);font-size:20px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0;line-height:2}
+.ln input{font:500 18px var(--serif);width:5.5em;border:0;border-bottom:2px solid var(--muted);background:var(--surface);color:var(--ink);padding:3px 6px;border-radius:6px 6px 0 0;text-align:center}
+.ln.ok input{border-bottom-color:var(--ok);background:var(--ok-soft)}
+.ln.bad input{border-bottom-color:var(--bad);background:var(--bad-soft)}
+.ln .ans{font-family:var(--sans);font-size:14px;color:var(--bad)}
+.ln .tick{font-family:var(--sans);font-size:14px;color:var(--ok);font-weight:600}
+.primary{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:600;margin-top:18px}
+:root[data-theme="dark"] .primary{color:#0B1220}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .primary{color:#0B1220}}
+.score{margin-left:12px;color:var(--muted);font-weight:600}
+
+/* pie */
+.foot{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.foot p{margin:0;color:var(--muted);font-size:15px}
+.done-btn{border:1px solid var(--ok);color:var(--ok);background:none;border-radius:10px;padding:10px 16px;font-weight:600}
+.done-btn[aria-pressed="true"]{background:var(--ok);color:#fff}
+:root[data-theme="dark"] .done-btn[aria-pressed="true"]{color:#0B1220}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .done-btn[aria-pressed="true"]{color:#0B1220}}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){
+  .wrap{padding:0 16px 80px}
+  .row{grid-template-columns:22px 1fr auto;gap:0 8px}
+  .controls{gap:8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="where">Lección 1 de 146</span>
+    <div class="nav">
+      <button disabled aria-label="Lección anterior" title="Esta es la primera lección"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button disabled aria-label="Lección siguiente" title="En esta muestra solo está la lección 1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </div>
+  <div class="bar" id="bar" role="progressbar" aria-valuemin="0" aria-valuemax="146" aria-valuenow="0" aria-label="Progreso del curso"><i></i></div>
+
+  <h1>Las contracciones</h1>
+  <p class="sub">First Lesson · Lección primera</p>
+  <span class="badge" id="badge" hidden>Completada</span>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-dia" aria-selected="true" aria-controls="p-dia">Diálogo</button>
+    <button class="tab" role="tab" id="t-not" aria-selected="false" aria-controls="p-not">Notas<small>4</small></button>
+    <button class="tab" role="tab" id="t-ejr" aria-selected="false" aria-controls="p-ejr">Ejercicios</button>
+  </div>
+
+  <!-- DIÁLOGO -->
+  <section id="p-dia" role="tabpanel" aria-labelledby="t-dia">
+    <div class="controls">
+      <button class="play-all" id="playAll"><svg id="playIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg><span id="playLabel">Escuchar todo</span></button>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button data-rate="0.7" aria-pressed="false">0,7×</button>
+        <button data-rate="0.9" aria-pressed="true">0,9×</button>
+        <button data-rate="1" aria-pressed="false">1×</button>
+      </div>
+      <div class="seg" role="group" aria-label="Modo de estudio">
+        <button data-cover="none" aria-pressed="true">Ver todo</button>
+        <button data-cover="en" aria-pressed="false">Tapar inglés</button>
+        <button data-cover="es" aria-pressed="false">Tapar español</button>
+      </div>
+      <div class="toggles">
+        <label><input type="checkbox" id="tPr" checked> Pronunciación</label>
+        <label><input type="checkbox" id="tEs" checked> Español</label>
+      </div>
+    </div>
+    <p class="hint" id="micHint">Toca el micrófono de una frase, dila en inglés y verás qué palabras se han entendido. Funciona en Chrome, Edge y Safari.</p>
+    <p class="hint" id="coverHint" hidden>Toca una frase para destaparla. Di la frase en voz alta antes de mirar.</p>
+
+    <ol class="rows" id="rows"></ol>
+
+    <h2>Las contracciones</h2>
+    <p class="lead">En inglés hablado, <em>is</em> y <em>are</em> se pegan al pronombre. Las encontrarás así en casi todas las frases.</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Forma completa</th><th>Contracción</th><th>Se pronuncia</th></tr></thead>
+        <tbody id="contr"></tbody>
+      </table>
+    </div>
+
+    <div class="foot">
+      <p id="footMsg">Marca con la estrella las frases que te cuesten. Las guardamos para repasarlas.</p>
+      <button class="done-btn" id="doneBtn" aria-pressed="false">Marcar como completada</button>
+    </div>
+  </section>
+
+  <!-- NOTAS -->
+  <section id="p-not" role="tabpanel" aria-labelledby="t-not" hidden>
+    <div class="prelim">
+      <p>Aquí presentamos las contracciones. Se trata principalmente del inglés hablado: <em>is</em> se convierte en <em>’s</em> tras un pronombre y <em>are</em> en <em>’re</em>.</p>
+    </div>
+    <div id="notes"></div>
+  </section>
+
+  <!-- EJERCICIOS -->
+  <section id="p-ejr" role="tabpanel" aria-labelledby="t-ejr" hidden>
+    <h2 class="ex-h">Traduce al inglés</h2>
+    <p class="lead">Di la frase en voz alta o escríbela, y luego comprueba.</p>
+    <div id="tr"></div>
+
+    <h2 class="ex-h">Rellena los espacios</h2>
+    <p class="lead">Puedes escribir la forma completa o la contracción: <em>is not</em> o <em>isn’t</em>.</p>
+    <div id="fills"></div>
+    <button class="primary" id="check">Comprobar todo</button><span class="score" id="score" aria-live="polite"></span>
+  </section>
+</div>
+
+<script>
+(function(){
+/* ---------- Datos de la lección 1 ---------- */
+var S=[
+ {en:"You're an excellent doctor.",pr:"iuër en eksëlënt doktör.",es:"(Tú) eres (usted es) un médico excelente (excelente médico).",fn:1},
+ {en:"Thank you, David. You're very polite.",pr:"zänkiu, iuër veri põlait.",es:"Gracias, David. (Tú eres) (Usted es) muy amable."},
+ {en:"This is my brother John. Hello, I'm David.",pr:"dziss is mai bradzër dchon. helou, aim deivid.",es:"Este es mi hermano John. Hola, (yo) soy David."},
+ {en:"Oh dear, we're late again.",pr:"ou diër, uiër leit equein.",es:"¡Vaya! (nosotros) llegamos (estamos) tarde de nuevo."},
+ {en:"It isn't my fault. There isn't a clock in my house.",pr:"it isent mai foolt. dzer isent ä klok in mai hauss.",es:"(Ello) no es culpa mía (mi culpa). No hay (un) reloj en mi casa."},
+ {en:"This isn't very difficult. Not at all. It's easy.",pr:"dziss isent veri difikölt. not át ool. itss iisi.",es:"Esto no es muy difícil. En absoluto. (Ello) es fácil.",fn:3},
+ {en:"She isn't very pretty. No, but she's kind.",pr:"shi isent veri priti. nou, bat shiis kaind.",es:"(Ella) no es muy guapa. No, pero (ella) es amable.",fn:2},
+ {en:"I'm sure this is our house. No, it isn't!",pr:"aim shuör dziss is auë hauss. nou it isent.",es:"(Yo) estoy seguro [de que] ésta es nuestra casa. No, no (lo) es.",fn:4}
+];
+var CONTR=[
+ ["I am","I’m","ai am → aim"],
+ ["you are","you’re","iu aa → iuër"],
+ ["it is","it’s","it is → itss"],
+ ["he is","he’s","hi is → hiis"],
+ ["we are","we’re","ui aa → uiër"],
+ ["is not","isn’t","→ isent"],
+ ["are not","aren’t","→ aant"]
+];
+var NOTES=[
+ [1,"Los pronombres personales están siempre presentes junto al verbo, cosa que no ocurre en español, pues casi siempre se suprimen. En las primeras lecciones, en las frases en las que se suprimen en español, ponemos los pronombres entre paréntesis."],
+ [2,"Además de los pronombres masculino y femenino singular (he y she), existe el neutro it, que se emplea para los objetos y para la mayoría de los animales. Para la tercera persona del plural hay solamente un pronombre: they, que significa ellos o ellas."],
+ [3,"En la contracción it's, la «s» es dura, sorda como la «s» española. Por ejemplo: it's easy se lee «itss iisi»."],
+ [4,"Fíjate bien en la pronunciación de sure: shuör."]
+];
+var TR=[
+ ["(Él) no es muy cortés.","He isn't very kind."],
+ ["(Ello) es culpa mía.","It's my fault."],
+ ["(Él) es un excelente médico.","He's an excellent doctor."],
+ ["(Yo) estoy seguro de que es tu hermano.","I'm sure he's your brother."],
+ ["¡Vaya!, llegamos tarde de nuevo.","Oh dear, we're late again."]
+];
+/* cada línea: partes de texto y huecos (null), y respuestas válidas */
+var FILL=[
+ {es:"(Ella) es muy guapa. / (Ella) no es muy guapa.",lines:[
+   {p:["She ",null," very pretty."],a:["is","'s"]},
+   {p:["She ",null,null," very pretty."],a:["is not","isn't"]}]},
+ {es:"(Nosotros) somos corteses. / (Nosotros) no somos corteses.",lines:[
+   {p:["We ",null," polite."],a:["are","'re"]},
+   {p:["We ",null,null," polite."],a:["are not","aren't"]}]},
+ {es:"De nada. (Ello) es fácil. / (Ello) no es fácil en absoluto.",lines:[
+   {p:["Not ",null," all. It ",null," easy."],a:["at is","at 's"]},
+   {p:["It ",null," not at all easy."],a:["is","'s"]}]},
+ {es:"Hola, (yo) soy John. / (Yo) no soy Anne.",lines:[
+   {p:["Hello, ",null," John."],a:["i am","i'm"]},
+   {p:[null,null," not Anne."],a:["i am","i'm"]}]},
+ {es:"Esto no es difícil. / (Ello) es culpa mía.",lines:[
+   {p:["This ",null," difficult."],a:["is not","isn't"]},
+   {p:["It ",null,null," fault."],a:["is my","'s my"]}]}
+];
+
+/* ---------- Estado y guardado ---------- */
+var KEY="assimil:v1:l1";
+var st={done:false,stars:[],pron:true,es:true,rate:0.9,cover:"none",best:{}};
+try{var raw=localStorage.getItem(KEY);if(raw){var o=JSON.parse(raw);for(var k in o){if(k in st)st[k]=o[k];}}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+
+var $=function(id){return document.getElementById(id)};
+var ICON_PLAY='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>';
+var ICON_MIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+var ICON_STAR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.7 5.7 6.3.8-4.6 4.3 1.2 6.2L12 17l-5.6 3 1.2-6.2L3 9.5l6.3-.8z"/></svg>';
+
+/* ---------- Diálogo ---------- */
+var rows=$("rows");
+S.forEach(function(s,i){
+  var li=document.createElement("li");li.className="row";li.dataset.i=i;
+  var fn=s.fn?'<button class="fn" data-fn="'+s.fn+'" aria-label="Ver nota '+s.fn+'">'+s.fn+'</button>':"";
+  li.innerHTML='<span class="n" aria-hidden="true">'+(i+1)+'</span>'+
+   '<div class="body"><p class="en">'+esc(s.en)+fn+'</p><p class="pr" aria-label="Pronunciación figurada">'+esc(s.pr)+'</p><p class="es" lang="es">'+esc(s.es)+'</p><div class="fb" hidden aria-live="polite"></div></div>'+
+   '<div class="acts"><button class="ib" data-play="'+i+'" aria-label="Escuchar la frase '+(i+1)+'">'+ICON_PLAY+'</button>'+
+   '<button class="ib" data-mic="'+i+'" aria-label="Practicar la pronunciación de la frase '+(i+1)+'">'+ICON_MIC+'</button>'+
+   '<button class="ib" data-star="'+i+'" aria-pressed="false" aria-label="Marcar la frase '+(i+1)+' para repasar">'+ICON_STAR+'</button></div>';
+  rows.appendChild(li);
+});
+function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+
+CONTR.forEach(function(r){
+  var tr=document.createElement("tr");
+  tr.innerHTML='<td>'+r[0]+'</td><td class="c">'+r[1]+'</td><td class="p">'+r[2]+'</td>';
+  $("contr").appendChild(tr);
+});
+
+/* ---------- Notas ---------- */
+NOTES.forEach(function(n){
+  var d=document.createElement("div");d.className="note";d.id="note-"+n[0];
+  d.innerHTML='<b class="k">'+n[0]+'</b><p>'+n[1]+'</p>';
+  $("notes").appendChild(d);
+});
+
+/* ---------- Ejercicios ---------- */
+TR.forEach(function(t,i){
+  var q=document.createElement("div");q.className="q";
+  q.innerHTML='<p class="ask">'+(i+1)+'. '+esc(t[0])+'</p><button class="link">Mostrar respuesta</button><p class="sol" lang="en">'+esc(t[1])+'</p>';
+  q.querySelector(".link").onclick=function(){
+    var open=q.classList.toggle("open");this.textContent=open?"Ocultar respuesta":"Mostrar respuesta";
+  };
+  $("tr").appendChild(q);
+});
+var fillLines=[];
+FILL.forEach(function(f,i){
+  var box=document.createElement("div");box.className="fill";
+  box.innerHTML='<p class="hint2">'+(i+1)+'. '+esc(f.es)+'</p>';
+  f.lines.forEach(function(L){
+    var ln=document.createElement("div");ln.className="ln";ln.lang="en";
+    var inputs=[];
+    L.p.forEach(function(part){
+      if(part===null){var inp=document.createElement("input");inp.type="text";inp.autocapitalize="off";inp.autocomplete="off";inp.spellcheck=false;inp.setAttribute("aria-label","Palabra que falta");inputs.push(inp);ln.appendChild(inp);}
+      else{var sp=document.createElement("span");sp.textContent=part;ln.appendChild(sp);}
+    });
+    var fb=document.createElement("span");ln.appendChild(fb);
+    box.appendChild(ln);
+    fillLines.push({ln:ln,inputs:inputs,a:L.a,fb:fb});
+  });
+  $("fills").appendChild(box);
+});
+function norm(s){return s.toLowerCase().replace(/[’‘´`]/g,"'").replace(/\s+/g," ").trim()}
+function checkAll(){
+  var ok=0;
+  fillLines.forEach(function(L){
+    var v=norm(L.inputs.map(function(i){return i.value}).filter(function(x){return x.trim()}).join(" "));
+    var good=L.a.indexOf(v)>-1;
+    L.ln.classList.remove("ok","bad");
+    L.fb.className="";L.fb.textContent="";
+    if(!v){return;}
+    if(good){ok++;L.ln.classList.add("ok");L.fb.className="tick";L.fb.textContent="Correcto";}
+    else{L.ln.classList.add("bad");L.fb.className="ans";L.fb.textContent="Respuesta: "+L.a[0]+" / "+L.a[1];}
+  });
+  $("score").textContent=ok+" de "+fillLines.length+" correctas";
+}
+$("check").onclick=checkAll;
+
+/* ---------- Audio ---------- */
+var voice=null,token=0,playing=false,synth=("speechSynthesis" in window)?window.speechSynthesis:null;
+function pickVoice(){if(!synth)return;var v=synth.getVoices();voice=v.find(function(x){return x.lang==="en-GB"||x.lang==="en_GB"})||v.find(function(x){return x.lang&&x.lang.indexOf("en")===0})||null;}
+if(synth){pickVoice();synth.onvoiceschanged=pickVoice;}
+function say(text,done){
+  if(!synth){if(done)done();return;}
+  synth.cancel();
+  var u=new SpeechSynthesisUtterance(text);u.lang="en-GB";if(voice)u.voice=voice;u.rate=st.rate;
+  var fin=false;function end(){if(fin)return;fin=true;if(done)done();}
+  u.onend=end;u.onerror=end;synth.speak(u);
+}
+function mark(i){
+  Array.prototype.forEach.call(rows.children,function(r,j){r.classList.toggle("playing",j===i);});
+}
+function stopAll(){token++;playing=false;if(synth)synth.cancel();mark(-1);setPlayUI();}
+function setPlayUI(){
+  $("playLabel").textContent=playing?"Detener":"Escuchar todo";
+  $("playIcon").innerHTML=playing?'<rect x="6" y="5" width="12" height="14" rx="2"/>':'<path d="M7 4l13 8-13 8z"/>';
+}
+function playFrom(i){
+  var t=++token;playing=true;setPlayUI();
+  (function next(k){
+    if(t!==token)return;
+    if(k>=S.length){playing=false;mark(-1);setPlayUI();return;}
+    mark(k);
+    var el=rows.children[k];if(el&&el.scrollIntoView){el.scrollIntoView({block:"center",behavior:"smooth"});}
+    say(S[k].en,function(){if(t===token)setTimeout(function(){next(k+1)},350);});
+  })(i);
+}
+$("playAll").onclick=function(){playing?stopAll():playFrom(0)};
+
+/* ---------- Práctica de pronunciación (micrófono) ---------- */
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+var EXP={"i'm":["i","am"],"you're":["you","are"],"we're":["we","are"],"they're":["they","are"],"he's":["he","is"],"she's":["she","is"],"it's":["it","is"],"its":["it","is"],"there's":["there","is"],"that's":["that","is"],"isn't":["is","not"],"aren't":["are","not"]};
+function toks(word){
+  var w=word.toLowerCase().replace(/[’‘´`]/g,"'").replace(/[^a-z0-9']/g,"");
+  if(!w)return [];
+  return EXP[w]||[w];
+}
+function evaluate(i,transcript){
+  var words=S[i].en.split(/\s+/),tt=[],counted=[];
+  words.forEach(function(w,wi){
+    var t=toks(w);counted[wi]=t.length>0;
+    t.forEach(function(x){tt.push({t:x,w:wi});});
+  });
+  var h=[];transcript.split(/\s+/).forEach(function(w){toks(w).forEach(function(x){h.push(x);});});
+  var n=tt.length,m=h.length,dp=[],a,b;
+  for(a=0;a<=n;a++){dp.push(new Array(m+1).fill(0));}
+  for(a=1;a<=n;a++){for(b=1;b<=m;b++){
+    dp[a][b]=tt[a-1].t===h[b-1]?dp[a-1][b-1]+1:Math.max(dp[a-1][b],dp[a][b-1]);
+  }}
+  var hit=new Array(n).fill(false);a=n;b=m;
+  while(a>0&&b>0){
+    if(tt[a-1].t===h[b-1]){hit[a-1]=true;a--;b--;}
+    else if(dp[a-1][b]>=dp[a][b-1]){a--;}
+    else{b--;}
+  }
+  var wordOk=words.map(function(){return true;}),okCount=0,total=0;
+  words.forEach(function(w,wi){if(counted[wi])total++;});
+  tt.forEach(function(x,k){if(!hit[k])wordOk[x.w]=false;});
+  words.forEach(function(w,wi){if(counted[wi]&&wordOk[wi])okCount++;});
+  return {words:words,wordOk:wordOk,counted:counted,score:total?Math.round(100*okCount/total):0};
+}
+function fbBox(i){return rows.children[i].querySelector(".fb");}
+function showMsg(i,msg){
+  var f=fbBox(i);f.hidden=false;f.className="fb";f.innerHTML="";
+  var p=document.createElement("p");p.className="heard";p.textContent=msg;f.appendChild(p);
+}
+function showResult(i,res){
+  var f=fbBox(i),cls,verdict;
+  if(res.score>=85){cls="good";verdict="¡Muy bien! Se ha entendido casi toda la frase.";}
+  else if(res.score>=60){cls="mid";verdict="Casi. Repite las palabras marcadas en rojo.";}
+  else{cls="low";verdict="Todavía no. Escucha la frase y prueba otra vez, más despacio.";}
+  var prev=st.best[i];
+  if(typeof prev!=="number"||res.score>prev){st.best[i]=res.score;save();}
+  f.hidden=false;f.className="fb "+cls;f.innerHTML="";
+  var v=document.createElement("p");v.className="verdict";v.textContent=verdict+" ("+res.score+" %)";f.appendChild(v);
+  var w=document.createElement("p");w.className="w";w.lang="en";
+  res.words.forEach(function(word,wi){
+    var s=document.createElement("span");s.textContent=word;
+    if(res.counted[wi])s.className=res.wordOk[wi]?"ok":"no";
+    w.appendChild(s);w.appendChild(document.createTextNode(" "));
+  });
+  f.appendChild(w);
+  var h=document.createElement("p");h.className="heard";h.textContent="He entendido: «"+res.heard+"»";f.appendChild(h);
+  var bst=document.createElement("p");bst.className="best";bst.textContent="Tu mejor resultado en esta frase: "+st.best[i]+" %";f.appendChild(bst);
+  rows.children[i].classList.add("revealed");
+}
+function paintBest(){
+  Object.keys(st.best).forEach(function(k){
+    var row=rows.children[+k];if(!row)return;
+    var f=row.querySelector(".fb");if(!f||!f.hidden)return;
+    f.hidden=false;f.className="fb";f.innerHTML="";
+    var p=document.createElement("p");p.className="best";p.textContent="Tu mejor resultado en esta frase: "+st.best[k]+" %";f.appendChild(p);
+  });
+}
+var rec=null,listening=-1;
+function listen(i,btn){
+  if(!SR){showMsg(i,"Tu navegador no admite reconocimiento de voz. Prueba con Chrome, Edge o Safari.");return;}
+  if(listening===i){if(rec)rec.stop();return;}
+  if(listening>-1&&rec){rec._abort=true;rec.abort();}
+  stopAll();
+  var r=new SR(),got=false;rec=r;
+  r.lang="en-GB";r.interimResults=false;r.continuous=false;r.maxAlternatives=3;
+  listening=i;btn.classList.add("rec");
+  showMsg(i,"Escuchando… di la frase en inglés.");
+  r.onresult=function(e){
+    got=true;var best=null;
+    for(var k=0;k<e.results[0].length;k++){
+      var tr=e.results[0][k].transcript,res=evaluate(i,tr);res.heard=tr;
+      if(!best||res.score>best.score)best=res;
+    }
+    showResult(i,best);
+  };
+  r.onerror=function(e){
+    if(e.error==="aborted")return;
+    got=true;
+    var blocked=(e.error==="not-allowed"||e.error==="service-not-allowed");
+    var framed=false;try{framed=window.self!==window.top;}catch(x){framed=true;}
+    if(blocked&&framed){showMsg(i,"Este visor integrado no deja usar el micrófono, aunque lo hayas permitido en el navegador. Descarga el archivo y ábrelo directamente en Chrome o Edge.");return;}
+    var msgs={"not-allowed":"No tengo permiso para usar el micrófono. Permítelo en el navegador y vuelve a intentarlo.","service-not-allowed":"No tengo permiso para usar el micrófono. Permítelo en el navegador y vuelve a intentarlo.","no-speech":"No te he oído. Acércate al micrófono y vuelve a intentarlo.","audio-capture":"No encuentro ningún micrófono.","network":"El reconocimiento de voz necesita conexión a internet."};
+    showMsg(i,msgs[e.error]||"No se pudo reconocer la voz. Inténtalo otra vez.");
+  };
+  r.onend=function(){
+    if(rec===r){listening=-1;}
+    btn.classList.remove("rec");
+    if(!got&&!r._abort)showMsg(i,"No te he oído. Inténtalo otra vez.");
+  };
+  try{r.start();}catch(err){listening=-1;btn.classList.remove("rec");showMsg(i,"No se pudo iniciar el micrófono.");}
+}
+
+/* ---------- Interacciones ---------- */
+rows.addEventListener("click",function(e){
+  var b=e.target.closest("button");var row=e.target.closest(".row");
+  if(b&&b.dataset.play!==undefined){
+    var i=+b.dataset.play;stopAll();var t=++token;mark(i);say(S[i].en,function(){if(t===token)mark(-1);});return;
+  }
+  if(b&&b.dataset.mic!==undefined){listen(+b.dataset.mic,b);return;}
+  if(b&&b.dataset.star!==undefined){
+    var j=+b.dataset.star;var p=st.stars.indexOf(j);
+    if(p>-1)st.stars.splice(p,1);else st.stars.push(j);
+    save();paintStars();return;
+  }
+  if(b&&b.dataset.fn){openNote(+b.dataset.fn);return;}
+  if(row&&st.cover!=="none"){row.classList.toggle("revealed");}
+});
+function paintStars(){
+  Array.prototype.forEach.call(rows.querySelectorAll("[data-star]"),function(b){
+    b.setAttribute("aria-pressed",st.stars.indexOf(+b.dataset.star)>-1?"true":"false");
+  });
+  var n=st.stars.length;
+  $("footMsg").textContent=n?(n===1?"Tienes 1 frase marcada para repasar.":"Tienes "+n+" frases marcadas para repasar."):"Marca con la estrella las frases que te cuesten. Las guardamos para repasarlas.";
+}
+function applyPrefs(){
+  var d=$("p-dia");
+  d.classList.toggle("hide-pr",!st.pron);d.classList.toggle("hide-es",!st.es);
+  d.classList.remove("cover-en","cover-es");
+  if(st.cover!=="none")d.classList.add("cover-"+st.cover);
+  $("tPr").checked=st.pron;$("tEs").checked=st.es;
+  $("coverHint").hidden=st.cover==="none";
+  Array.prototype.forEach.call(document.querySelectorAll("[data-rate]"),function(b){b.setAttribute("aria-pressed",String(+b.dataset.rate===st.rate));});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-cover]"),function(b){b.setAttribute("aria-pressed",String(b.dataset.cover===st.cover));});
+  Array.prototype.forEach.call(rows.children,function(r){r.classList.remove("revealed")});
+}
+document.querySelectorAll("[data-rate]").forEach(function(b){b.onclick=function(){st.rate=+b.dataset.rate;save();applyPrefs();};});
+document.querySelectorAll("[data-cover]").forEach(function(b){b.onclick=function(){st.cover=b.dataset.cover;save();applyPrefs();};});
+$("tPr").onchange=function(){st.pron=this.checked;save();applyPrefs();};
+$("tEs").onchange=function(){st.es=this.checked;save();applyPrefs();};
+
+function paintDone(){
+  $("doneBtn").setAttribute("aria-pressed",String(st.done));
+  $("doneBtn").textContent=st.done?"Completada · deshacer":"Marcar como completada";
+  $("badge").hidden=!st.done;
+  var bar=$("bar");bar.classList.toggle("done",st.done);
+  bar.setAttribute("aria-valuenow",st.done?"1":"0");
+  bar.firstElementChild.style.width=(st.done?(1/146*100):0.7)+"%";
+}
+$("doneBtn").onclick=function(){st.done=!st.done;save();paintDone();};
+
+/* pestañas */
+var tabs=["dia","not","ejr"];
+function showTab(id){
+  stopAll();
+  tabs.forEach(function(t){
+    var sel=t===id;
+    $("t-"+t).setAttribute("aria-selected",String(sel));
+    $("p-"+t).hidden=!sel;
+  });
+}
+tabs.forEach(function(t){$("t-"+t).onclick=function(){showTab(t)};});
+function openNote(n){
+  showTab("not");
+  document.querySelectorAll(".note").forEach(function(x){x.classList.remove("hl")});
+  var el=$("note-"+n);if(el){el.classList.add("hl");el.scrollIntoView({block:"center",behavior:"smooth"});}
+}
+
+applyPrefs();paintStars();paintDone();setPlayUI();paintBest();
+})();
+</script>
+</body>
+</html>
